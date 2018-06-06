@@ -84,7 +84,7 @@ class SearchController(object):
             'user_link': user_link,
             'username_from_id': username_from_id,
             # The message that is shown (only) if there's no search results.
-            'zero_message': _('No annotations matched your search.'),
+            'zero_message': _('Nothing matched your search.'),
         }
 
 
