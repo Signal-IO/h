@@ -383,14 +383,6 @@ class EditProfileSchema(CSRFSchema):
             validate_url),
         title=_('Link'))
 
-    orcid = colander.SchemaNode(
-        colander.String(),
-        missing=None,
-        validator=validate_orcid,
-        title=_('ORCID'),
-        hint=_('ORCID provides a persistent identifier for researchers (see orcid.org).'))
-
-
 class NotificationsSchema(CSRFSchema):
     types = (('reply', _('Email me when someone replies to one of my annotations.'),),)
 

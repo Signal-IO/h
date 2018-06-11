@@ -345,7 +345,7 @@ class UserSearchController(SearchController):
             'location': self.user.location,
             'uri': self.user.uri,
             'domain': domain(self.user),
-            'orcid': self.user.orcid,
+            #'orcid': self.user.orcid,
         }
 
         if self.request.user == self.user:

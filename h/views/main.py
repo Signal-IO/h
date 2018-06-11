@@ -28,11 +28,11 @@ def annotation_page(context, request):
     annotation = context.annotation
     document = annotation.document
     if document and document.title:
-        title = 'Annotation by {user} on {title}'.format(
+        title = 'Message by {user} on {title}'.format(
             user=annotation.userid.replace('acct:', ''),
             title=document.title)
     else:
-        title = 'Annotation by {user}'.format(
+        title = 'Message by {user}'.format(
             user=annotation.userid.replace('acct:', ''))
 
     alternate = request.route_url('api.annotation', id=annotation.id)
