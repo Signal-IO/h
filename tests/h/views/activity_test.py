@@ -895,7 +895,7 @@ class TestUserSearchController(object):
         assert user_details['location'] == user.location
         assert user_details['uri'] == user.uri
         assert user_details['domain'] == 'www.example.com'
-        assert user_details['orcid'] == user.orcid
+        #assert user_details['orcid'] == user.orcid
 
     def test_search_passes_the_edit_url_to_the_template(self,
                                                         controller,
@@ -1001,7 +1001,7 @@ class TestUserSearchController(object):
         return factories.User(
             registered_date=datetime.datetime(year=2016, month=8, day=1),
             uri='http://www.example.com/me',
-            orcid='0000-0000-0000-0000',
+            #orcid='0000-0000-0000-0000',
         )
 
     @pytest.fixture
