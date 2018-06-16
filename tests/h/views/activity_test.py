@@ -92,7 +92,7 @@ class TestSearchController(object):
                                                                      controller):
         result = controller.search()
 
-        assert result['zero_message'] == 'No annotations matched your search.'
+        assert result['zero_message'] == 'Nothing matched your search..'
 
     @pytest.fixture
     def controller(self, pyramid_request):
@@ -478,7 +478,7 @@ class TestGroupSearchController(object):
 
         result = controller.search()
 
-        assert result['zero_message'] == 'No annotations matched your search.'
+        assert result['zero_message'] == 'Nothing matched your search..'
 
     @pytest.mark.parametrize('test_group,test_user',
                              [('open_group', 'user'), ('group', 'member')],
@@ -925,7 +925,7 @@ class TestUserSearchController(object):
 
         result = controller.search()
 
-        assert result['zero_message'] == 'No annotations matched your search.'
+        assert result['zero_message'] == 'Nothing matched your search..'
 
     def test_search_returns_the_user_zero_message_to_the_template(
             self, controller, factories, pyramid_request, search, user):
@@ -1239,7 +1239,7 @@ def search(patch):
         'search_results': ActivityResults(total=200,
                                           aggregations={},
                                           timeframes=[]),
-        'zero_message': 'No annotations matched your search.',
+        'zero_message': 'Nothing matched your search..',
     }
     return search
 
