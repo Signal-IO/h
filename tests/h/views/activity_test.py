@@ -92,7 +92,7 @@ class TestSearchController(object):
                                                                      controller):
         result = controller.search()
 
-        assert result['zero_message'] == 'Nothing matched your search..'
+        assert result['zero_message'] == 'Nothing matched your search.'
 
     @pytest.fixture
     def controller(self, pyramid_request):
