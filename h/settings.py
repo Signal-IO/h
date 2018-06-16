@@ -81,4 +81,5 @@ def mandrill_settings(environ):
             'mail.host': 'smtp.mandrillapp.com',
             'mail.port': 587,
             'mail.tls': True,
+            'mail.default_sender': 'alan@travr.se',
         }
