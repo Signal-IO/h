@@ -78,8 +78,9 @@ def mandrill_settings(environ):
         return {
             'mail.username': environ['MANDRILL_USERNAME'],
             'mail.password': environ['MANDRILL_APIKEY'],
+            'mail.default_sender': environ['MAIL_DEFAULT_SENDER'], 
             'mail.host': 'smtp.mandrillapp.com',
             'mail.port': 587,
             'mail.tls': True,
-            'mail.default_sender': 'alan@travr.se',
+
         }
