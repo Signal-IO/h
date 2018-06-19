@@ -113,7 +113,7 @@ def new_password_node(**kwargs):
 def _privacy_accepted_message():
     terms_links = {
         'privacy_policy': '<a class="link" href="{href}">{text}</a>'.format(
-            href='https://web.hypothes.is/privacy/',
+            href='https://h.travr.se/privacy/',
             text=_('privacy policy'),
         ),
         'terms_of_service': '<a class="link" href="{href}">{text}</a>'.format(
