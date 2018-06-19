@@ -169,7 +169,7 @@ def includeme(config):
     config.add_route('blog', '/blog/', static=True)
     config.add_route(
         'chrome-extension',
-        'https://chrome.google.com/webstore/detail/bjfhmglciegochdpefhhlphglcehbmek',
+        'https://chrome.google.com/webstore/detail/fgnedpklfijmpcadfmalcjbclhlafdec',
         static=True)
     config.add_route('contact', '/contact/', static=True)
     config.add_route('contribute', '/contribute/', static=True)
