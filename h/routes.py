@@ -157,6 +157,9 @@ def includeme(config):
     config.add_route('onboarding', '/welcome/')
     config.add_route('custom_onboarding', '/welcome/{slug}')
 
+    #Privacy
+    config.add_route('privacy','/privacy')
+
     # Notification
     config.add_route('unsubscribe', '/notification/unsubscribe/{token}')
 
