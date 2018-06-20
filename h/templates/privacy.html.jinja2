@@ -5,9 +5,16 @@
 {% block meta %}
   <link href='//fonts.googleapis.com/css?family=Lato:400,300' rel='stylesheet' type='text/css'>
   {{ super() }}
+  <script type="application/json" class="js-hypothesis-config">
+    {
+      "openSidebar": true,
+      "openLoginForm": true
+    }
+  </script>
 {% endblock %}
 
 {% block content %}
+  {% if is_privacy %}
   <div class="help-page">
     <div class="help-page-content masthead-small">
       {% include "includes/logo-header.html.jinja2" %}
@@ -195,6 +202,7 @@
             <div><p class="help-page-lede">Updated on: June 19, 2018</p></div>
           </div>
         </section>
+      {% endif %}
     </article>
   </div>
 {% endblock %}

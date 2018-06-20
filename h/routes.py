@@ -157,6 +157,9 @@ def includeme(config):
     config.add_route('onboarding', '/welcome/')
     config.add_route('custom_onboarding', '/welcome/{slug}')
 
+    #Privacy
+    config.add_route('privacy', 'https://h.travr.se/privacy/')
+
     # Notification
     config.add_route('unsubscribe', '/notification/unsubscribe/{token}')
 
@@ -183,7 +186,6 @@ def includeme(config):
         #'hypothesis-twitter', 'https://twitter.com/hypothes_is', static=True)
     #config.add_route('jobs', '/jobs/', static=True)
     #config.add_route('press', '/press/', static=True)
-    config.add_route('privacy', 'https://h.travr.se/privacy/', static=True)
     #config.add_route('roadmap', '/roadmap/', static=True)
     #config.add_route('team', '/team/', static=True)
     config.add_route('terms-of-service', '/terms-of-service/', static=True)
