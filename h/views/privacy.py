@@ -17,8 +17,7 @@ def help_page(context, request):
         'embed_js_url': request.route_path('embed'),
         'is_help': True,
         'is_onboarding': False,
-    }
-
+    }   
 
 def _random_word():
     return binascii.hexlify(os.urandom(8))
