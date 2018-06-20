@@ -5,20 +5,6 @@
 {% block meta %}
   <link href='//fonts.googleapis.com/css?family=Lato:400,300' rel='stylesheet' type='text/css'>
   {{ super() }}
-  <script type="application/json" class="js-hypothesis-config">
-    {
-      "openSidebar": false,
-      "openLoginForm": false
-    }
-  </script>
-  {% if not is_onboarding %}
-    <script type="application/json" class="js-hypothesis-config">
-    {
-      "sidebarAppUrl": "{{ request.route_url('sidebar_app') }}"
-    }
-    </script>
-    <script async defer src="{{ embed_js_url }}"></script>
-  {% endif %}
 {% endblock %}
 
 {% block content %}
@@ -59,7 +45,7 @@
              and non-personally-identifiable information from you. Often, you choose what information to provide to us, but sometimes, 
              we may require certain information for you to use and for us to provide our services. Specifically, we collect the following:</div>
             <div><p class="help-page-lede">Information You Voluntarily Provide</p></div>
-            <div class="feature-content styled-text">Account Creation & User Profile: When you sign up and use our services, you will voluntarily 
+            <div class="feature-content styled-text">Account Creation and User Profile: When you sign up and use our services, you will voluntarily 
             provide us with the following information: username, email, and profile information.
             Discussion Using Sidebar: When you are using our Travrse Sidebar you are actively visiting websites on the internet, highlighting content 
             of interest and discussing (i.e. providing your opinion or remarks as related to content you’ve found). These messages are associated to your account.

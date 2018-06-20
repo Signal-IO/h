@@ -15,7 +15,7 @@ from pyramid.view import view_config
 def help_page(context, request):
     return {
         'embed_js_url': request.route_path('embed'),
-        'is_help': True,
+        'is_help': False,
         'is_onboarding': False,
     }   
 
