@@ -14,7 +14,6 @@ from pyramid.view import view_config
 @view_config(renderer='h:templates/privacy.html.jinja2', route_name='privacy')
 def privacy_page(context, request):
     return {
-        'embed_js_url': request.route_path('embed'),
         'is_help': False,
         'is_onboarding': False,
     }   
