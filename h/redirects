@@ -15,6 +15,7 @@
 /register              internal-prefix signup
 /forgot_password       internal-prefix forgot_password
 /reset_password        internal-prefix account_reset
+/privacy                                               prefix https://h.travr.se/privacy
 
 # Blog redirects
 /blog                                                  prefix https://web.hypothes.is/blog
