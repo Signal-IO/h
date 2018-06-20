@@ -158,7 +158,7 @@ def includeme(config):
     config.add_route('custom_onboarding', '/welcome/{slug}')
 
     #Privacy
-    config.add_route('privacy', 'https://h.travr.se/privacy/')
+    config.add_route('privacy', 'https://docs.google.com/document/d/1vsfbX_fiidQRw_JCuiDreEU4E4CLOZx-b8NvF779bEk/edit?usp=sharing')
 
     # Notification
     config.add_route('unsubscribe', '/notification/unsubscribe/{token}')
