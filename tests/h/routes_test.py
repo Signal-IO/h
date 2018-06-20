@@ -119,7 +119,7 @@ def test_includeme():
         call('about', '/about/', static=True),
         call('bioscience', '/bioscience/', static=True),
         call('blog', '/blog/', static=True),
-        call('chrome-extension', 'https://chrome.google.com/webstore/detail/fgnedpklfijmpcadfmalcjbclhlafdec', static=True),
+        call('chrome-extension', 'https://chrome.google.com/webstore/detail/chdhoobmhaihepeebiknddjoadfifhkb', static=True),
         call('contact', '/contact/', static=True),
         call('contribute', '/contribute/', static=True),
         call('education', '/education/', static=True),
