@@ -171,7 +171,7 @@ def includeme(config):
         'chrome-extension',
         'https://chrome.google.com/webstore/detail/chdhoobmhaihepeebiknddjoadfifhkb',
         static=True)
-    config.add_route('contact', '/contact/', static=True)
+    #config.add_route('contact', '/contact/', static=True)
     #config.add_route('contribute', '/contribute/', static=True)
     #config.add_route('education', '/education/', static=True)
     #config.add_route('for-publishers', '/for-publishers/', static=True)
