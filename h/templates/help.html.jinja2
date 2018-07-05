@@ -26,37 +26,39 @@
     <div class="help-page-content masthead-small">
       {% include "includes/logo-header.html.jinja2" %}
     </div>
-    <article class="help-page-content">
-      {% if is_help %}
-        <section class="help-page-section">
-          <h2 id="installation" class="help-page-heading">Installation</h2>
-          <p class="help-page-lede">There are a couple of installations of Hypothesis to choose from:</p>
-          <div class="numbered-list columns">
-            <div class="columns__col-1-2"><div class="numbered-list-item">If you want to annotate and comment on documents then install our <a href="{{ request.route_url('chrome-extension') }}">browser extension</a>.</div></div>
-            <div class="columns__col-1-2"><div class="numbered-list-item">If you wish to install Hypothesis on your own site then head over to GitHub.</div></div>
-          </div>
-        </section>
-      {% endif %}
       {% if is_onboarding %}
         <section class="help-page-section">
           <h2 id="getting-started" class="help-page-heading">Getting started</h2>
           <p class="help-page-lede">Now you have the extension up and running. It's time to
-            start annotating some documents.</p>
+            start discussing some documents.</p>
           <div class="numbered-list columns">
-            <div class="columns__col-1-2"><div class="numbered-list-item">Create an account using the sidebar on the right of the screen.</div></div>
-            <div class="columns__col-1-2"><div class="numbered-list-item">Go forth and annotate! Enable the sidebar via the button in the location bar.</div></div>
-          </div>
+            <div class="columns__col-1-2"><div class="numbered-list-item">If you've not already, create an account using the sidebar on the right of the screen.</div></div>
+            <div class="columns__col-1-2"><div class="numbered-list-item">Go forth and discuss! Enable the sidebar via the button in the Extensions toolbar.</div></div>
+          </div>  
         </section>
       {% endif %}
       <section class="help-page-section">
-        <h2 id="key-features" class="help-page-heading">Annotation Types</h2>
-        <p class="help-page-lede">There are a few types of annotations that can be created
-          with the application:</p>
+        <h2 id="key-features" class="help-page-heading">Message Types</h2>
+        <p class="help-page-lede">There are a few types of discussions that can be created
+          with Travrse:</p>
         <div class="feature-content">
           <section class="feature">
-            <h3 class="feature-heading"><i class="feature-icon h-icon-insert-comment"></i> Notes</h3>
+            <h3 class="feature-heading"><i class="feature-icon h-icon-annotate"></i> Discussions</h3>
             <div class="feature-content styled-text">
-              <p>Create a <em>note</em> by selecting some text and clicking the <i class="help-icon h-icon-insert-comment"></i> button</p>
+              <p>Create a <em>public or private message</em> by selecting some text and clicking the <i class="help-icon h-icon-annotate"></i> button</p>
+            </div>
+          </section>
+          <section class="feature">
+            <h3 class="feature-heading"><i class="feature-icon h-icon-reply"></i> Replies</h3>
+            <div class="feature-content">
+              <p>You can  <em>reply</em> to any message by using the <i class="help-icon h-icon-reply"></i> reply action
+                on every card.</p>
+            </div>
+          </section>
+          <section class="feature">
+            <h3 class="feature-heading"><i class="feature-icon h-icon-border-color"></i>Page Notes</h3>
+            <div class="feature-content styled-text">
+              <p>Create a <em>page note</em> by selecting some text and clicking the <i class="help-icon h-icon-insert-comment"></i> button</p>
             </div>
           </section>
           <section class="feature">
@@ -66,24 +68,17 @@
               Try it on this sentence.</p>
             </div>
           </section>
-          <section class="feature">
-            <h3 class="feature-heading"><i class="feature-icon h-icon-reply"></i> Replies</h3>
-            <div class="feature-content">
-              <p>You can  <em>reply</em> to any annotation by using the <i class="help-icon h-icon-reply"></i> reply action
-                on every card.</p>
-            </div>
-          </section>
         </div>
       </section>
       <section class="help-page-section">
         <h2 id="key-features" class="help-page-heading">Privacy</h2>
-        <p class="help-page-lede">Annotations are either public and visible to everyone
+        <p class="help-page-lede">Messages are either public and visible to everyone
           or private and visible only to you.</p>
         <div class="columns feature-content">
           <section class="feature columns__col-1-2">
             <h3 class="feature-heading"><i class="feature-icon h-icon-public"></i> Public</h3>
             <div class="feature-content styled-text">
-              <p>These annotations are visible to everyone both in the
+              <p>These messages are visible to everyone both in the
                 document itself and our <a
                 href="{{request.route_url('stream')}}">public stream</a>.</p>
             </div>
@@ -91,7 +86,7 @@
           <section class="feature columns__col-1-2">
             <h3 class="feature-heading"><i class="feature-icon h-icon-lock"></i> Private</h3>
             <div class="feature-content">
-              <p>Private annotations are visible only to you when logged in.</p>
+              <p>Private messages (posted to a group or yourself) are visible only to you when logged in.</p>
             </div>
           </section>
         </div>
@@ -107,18 +102,6 @@
             <p>Use the <i class="help-icon h-icon-share"></i> button to get a sharable link to the page with annotations.</p>
           </div>
         </section>
-      </section>
-      <section class="help-page-section">
-        <h2 class="help-page-heading">Resources</h2>
-        <div class="styled-text">
-          <ul>
-            <li>View the <a href="https://hypothes.is/roadmap/">product roadmap</a> to check out what we're working on.</li>
-            <li>Request features, report bugs and meet other users in our <a href="https://groups.google.com/forum/#!forum/hypothesis-forum">discussion forums</a>.</li>
-            <li>If you need help please don't hesitate to <a href="mailto:support@hypothes.is">get in touch</a>.</li>
-            <li>Visit <a href="https://hypothes.is/about/">our website</a> to learn more about the project.</li>
-            <li>Check out the code on <a href="https://github.com/hypothesis/h">GitHub</a>.</li>
-          </ul>
-        </div>
       </section>
     </article>
     <div class="help-page-sidebar">
