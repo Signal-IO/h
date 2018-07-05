@@ -384,7 +384,7 @@ class EditProfileSchema(CSRFSchema):
         title=_('Link'))
 
 class NotificationsSchema(CSRFSchema):
-    types = (('reply', _('Email me when someone replies to one of my annotations.'),),)
+    types = (('reply', _('Email me when someone replies to one of my messages.'),),)
 
     notifications = colander.SchemaNode(
         colander.Set(),
