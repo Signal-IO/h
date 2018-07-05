@@ -426,9 +426,17 @@
               </li>
               <li class="search-result-zero__list-item">
                 {%- trans url=request.route_url('activity.search') -%}
+                  To start team discussions
+                  <a class="link" href="{{ request.route_url('group_create') }}"> 
+                    create a new group or two.
+                  </a>
+                {%- endtrans -%}
+              </li>
+              <li class="search-result-zero__list-item">
+                {%- trans url=request.route_url('activity.search') -%}
                   Check out some of the
                   <a class="link" href="{{ url }}">
-                    recently discussed documents
+                    recently discussed documents.
                   </a>
                 {%- endtrans -%}
               </li>
@@ -436,7 +444,7 @@
                 {%- trans url=user.edit_url -%}
                   Let other users know more about you by
                   <a class="link" href="{{ url }}">
-                    adding more information to your profile
+                    adding more information to your profile.
                   </a>
                 {%- endtrans -%}
               </li>
