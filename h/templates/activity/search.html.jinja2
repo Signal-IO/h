@@ -421,13 +421,13 @@
               <li class="search-result-zero__list-item"><!--
                 !--><a class="link"
                        href="{{ request.route_url('chrome-extension') }}">
-                  {%- trans %}Install our Chrome extension{% endtrans -%}
+                  {%- trans %}Install our Chrome extension to post a message{% endtrans -%}
                 </a>
               </li>
               <li class="search-result-zero__list-item">
-                {%- trans url=request.route_url('activity.search') -%}
+                {%- trans url=request.route_url('group_create') -%}
                   To start team discussions
-                  <a class="link" href="{{ request.route_url('group_create') }}"> 
+                  <a class="link" href="{{ url }}"> 
                     create a new group or two.
                   </a>
                 {%- endtrans -%}
@@ -442,7 +442,7 @@
               </li>
               <li class="search-result-zero__list-item">
                 {%- trans url=user.edit_url -%}
-                  Let other users know more about you by
+                  Let other team members know more about you by
                   <a class="link" href="{{ url }}">
                     adding more information to your profile.
                   </a>
