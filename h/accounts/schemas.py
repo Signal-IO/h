@@ -116,6 +116,8 @@ def _privacy_accepted_message():
             href='https://docs.google.com/document/d/1vsfbX_fiidQRw_JCuiDreEU4E4CLOZx-b8NvF779bEk/edit#heading=h.sojqc7vsd7qy',
             text=_('privacy policy'),
         ),
+        'terms_of_service': '',
+        'community_guidelines': '',
     }
 
     privacy_msg = _('I have read and agree to the {privacy}.').format(
