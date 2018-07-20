@@ -54,17 +54,17 @@ class SearchBarController extends Controller {
         {
           matchOn: 'tag',
           title: 'tag:',
-          explanation: 'search for annotations with a tag',
+          explanation: 'search for messages with a tag',
         },
         {
           matchOn: 'url',
           title: 'url:',
-          explanation: 'see all annotations on a page',
+          explanation: 'see all discussions on a page',
         },
         {
           matchOn: 'group',
           title: 'group:',
-          explanation: 'show annotations associated with a group',
+          explanation: 'show discussions associated with a group',
         },
       ].map((item) => { return Object.assign(item, { type: FACET_TYPE}); });
 

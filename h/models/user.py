@@ -163,7 +163,7 @@ class User(Base):
     uri = sa.Column(sa.UnicodeText())
 
     #: The user's ORCID ID
-    orcid = sa.Column(sa.UnicodeText())
+    #orcid = sa.Column(sa.UnicodeText())
 
     #: Is this user an admin member?
     admin = sa.Column(sa.Boolean,

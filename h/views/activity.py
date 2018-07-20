@@ -84,7 +84,7 @@ class SearchController(object):
             'user_link': user_link,
             'username_from_id': username_from_id,
             # The message that is shown (only) if there's no search results.
-            'zero_message': _('No annotations matched your search.'),
+            'zero_message': _('Nothing matched your search.'),
         }
 
 
@@ -190,7 +190,7 @@ class GroupSearchController(SearchController):
 
         if not result.get('q'):
             result['zero_message'] = Markup(_(
-                'The group “{name}” has not made any annotations yet.').format(
+                'The group “{name}” has not curated nor discussed any documents yet.').format(
                     name=Markup.escape(self.group.name)))
 
         result['show_leave_button'] = self.request.user in self.group.members
@@ -345,7 +345,7 @@ class UserSearchController(SearchController):
             'location': self.user.location,
             'uri': self.user.uri,
             'domain': domain(self.user),
-            'orcid': self.user.orcid,
+            #'orcid': self.user.orcid,
         }
 
         if self.request.user == self.user:
@@ -358,7 +358,7 @@ class UserSearchController(SearchController):
                 result['zero_message'] = '__SHOW_GETTING_STARTED__'
             else:
                 result['zero_message'] = _(
-                    "{name} has not made any annotations yet.".format(
+                    "{name} has not started any discussions yet.".format(
                         name=result['user']['name']))
 
         return result

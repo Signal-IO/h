@@ -27,8 +27,10 @@
     {{ lozenge('','') }}
   </template>
   <div class="nav-bar__content">
-    <a href="https://web.hypothes.is/" title="Hypothesis homepage" class="nav-bar__logo-container"><!--
-      !-->{{ svg_icon('logo', 'nav-bar__logo') }}</a>
+    
+    <a href="{{ request.route_url('activity.search') }}" title="Travrse homepage" class="nav-bar__logo-container"><!--
+      !-->{{ svg_icon('logo', 'nav-bar__logo-container') }}</a>
+
 
     <div class="nav-bar__search js-search-bar" data-ref="searchBar">
       <form class="search-bar"
@@ -55,7 +57,7 @@
 
           <input class="search-bar__input js-input-autofocus"
                  aria-autocomplete="list"
-                 aria-label="{{ _('Search annotations') }}"
+                 aria-label="{{ _('Search Discussions') }}"
                  aria-haspopup="true"
                  autocapitalize="off"
                  autocomplete="off"
