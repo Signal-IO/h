@@ -41,3 +41,6 @@ sendgrid.env
 
 # VSCode
 .vscode
+
+# Virtual Environment
+.venv/

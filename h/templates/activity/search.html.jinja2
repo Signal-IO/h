@@ -421,22 +421,30 @@
               <li class="search-result-zero__list-item"><!--
                 !--><a class="link"
                        href="{{ request.route_url('chrome-extension') }}">
-                  {%- trans %}Install our Chrome extension{% endtrans -%}
+                  {%- trans %}Install the Travrse Chrome extension to curate documents and add discussion/insight layers. {% endtrans -%} 
                 </a>
+              </li>
+              <li class="search-result-zero__list-item">
+                {%- trans url=request.route_url('group_create') -%}
+                  To start team based curation and discussions
+                  <a class="link" href="{{ url }}"> 
+                    create a new group.
+                  </a>
+                {%- endtrans -%}
               </li>
               <li class="search-result-zero__list-item">
                 {%- trans url=request.route_url('activity.search') -%}
                   Check out some of the
                   <a class="link" href="{{ url }}">
-                    recently discussed documents
+                    recently discussed documents.
                   </a>
                 {%- endtrans -%}
               </li>
               <li class="search-result-zero__list-item">
                 {%- trans url=user.edit_url -%}
-                  Let other users know more about you by
+                  Let other team members know more about you by
                   <a class="link" href="{{ url }}">
-                    adding more information to your profile
+                    adding more information to your profile.
                   </a>
                 {%- endtrans -%}
               </li>

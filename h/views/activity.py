@@ -190,7 +190,7 @@ class GroupSearchController(SearchController):
 
         if not result.get('q'):
             result['zero_message'] = Markup(_(
-                'The group “{name}” has not made any annotations yet.').format(
+                'The group “{name}” has not curated nor discussed any documents yet.').format(
                     name=Markup.escape(self.group.name)))
 
         result['show_leave_button'] = self.request.user in self.group.members
@@ -358,7 +358,7 @@ class UserSearchController(SearchController):
                 result['zero_message'] = '__SHOW_GETTING_STARTED__'
             else:
                 result['zero_message'] = _(
-                    "{name} has not made any annotations yet.".format(
+                    "{name} has not started any discussions yet.".format(
                         name=result['user']['name']))
 
         return result

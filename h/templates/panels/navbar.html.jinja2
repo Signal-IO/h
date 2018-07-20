@@ -27,8 +27,9 @@
     {{ lozenge('','') }}
   </template>
   <div class="nav-bar__content">
-    <a href="https://h.travr.se/search" title="Travrse homepage" class="nav-bar__logo-container"><!--
-      !-->{{ svg_icon('color_logo_with_background', 'nav-bar__logo') }}</a>
+    
+    <a href="{{ request.route_url('activity.search') }}" title="Travrse homepage" class="nav-bar__logo-container"><!--
+      !-->{{ svg_icon('logo', 'nav-bar__logo-container') }}</a>
 
 
     <div class="nav-bar__search js-search-bar" data-ref="searchBar">
