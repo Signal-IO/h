@@ -721,7 +721,7 @@ class TestEditProfileController(object):
         user = pyramid_request.user
         user.display_name = 'Jim Smith'
         user.description = 'Job Description'
-        user.orcid = 'ORCID ID'
+        #user.orcid = 'ORCID ID'
         user.uri = 'http://foo.org'
         user.location = 'Paris'
 
@@ -731,7 +731,7 @@ class TestEditProfileController(object):
             'form': {
                 'display_name': 'Jim Smith',
                 'description': 'Job Description',
-                'orcid': 'ORCID ID',
+                #'orcid': 'ORCID ID',
                 'link': 'http://foo.org',
                 'location': 'Paris',
             }
@@ -745,7 +745,7 @@ class TestEditProfileController(object):
         ctrl.form = form_validating_to({
             'display_name': 'Jim Smith',
             'description': 'Job Description',
-            'orcid': 'ORCID ID',
+            #'orcid': 'ORCID ID',
             'link': 'http://foo.org',
             'location': 'Paris',
         })
@@ -753,7 +753,7 @@ class TestEditProfileController(object):
 
         assert user.display_name == 'Jim Smith'
         assert user.description == 'Job Description'
-        assert user.orcid == 'ORCID ID'
+        #assert user.orcid == 'ORCID ID'
         assert user.uri == 'http://foo.org'
         assert user.location == 'Paris'
 

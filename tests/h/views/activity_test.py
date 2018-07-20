@@ -92,7 +92,7 @@ class TestSearchController(object):
                                                                      controller):
         result = controller.search()
 
-        assert result['zero_message'] == 'No annotations matched your search.'
+        assert result['zero_message'] == 'Nothing matched your search.'
 
     @pytest.fixture
     def controller(self, pyramid_request):
@@ -478,7 +478,7 @@ class TestGroupSearchController(object):
 
         result = controller.search()
 
-        assert result['zero_message'] == 'No annotations matched your search.'
+        assert result['zero_message'] == 'Nothing matched your search..'
 
     @pytest.mark.parametrize('test_group,test_user',
                              [('open_group', 'user'), ('group', 'member')],
@@ -895,7 +895,7 @@ class TestUserSearchController(object):
         assert user_details['location'] == user.location
         assert user_details['uri'] == user.uri
         assert user_details['domain'] == 'www.example.com'
-        assert user_details['orcid'] == user.orcid
+        #assert user_details['orcid'] == user.orcid
 
     def test_search_passes_the_edit_url_to_the_template(self,
                                                         controller,
@@ -925,7 +925,7 @@ class TestUserSearchController(object):
 
         result = controller.search()
 
-        assert result['zero_message'] == 'No annotations matched your search.'
+        assert result['zero_message'] == 'Nothing matched your search..'
 
     def test_search_returns_the_user_zero_message_to_the_template(
             self, controller, factories, pyramid_request, search, user):
@@ -1001,7 +1001,7 @@ class TestUserSearchController(object):
         return factories.User(
             registered_date=datetime.datetime(year=2016, month=8, day=1),
             uri='http://www.example.com/me',
-            orcid='0000-0000-0000-0000',
+            #orcid='0000-0000-0000-0000',
         )
 
     @pytest.fixture
@@ -1239,7 +1239,7 @@ def search(patch):
         'search_results': ActivityResults(total=200,
                                           aggregations={},
                                           timeframes=[]),
-        'zero_message': 'No annotations matched your search.',
+        'zero_message': 'Nothing matched your search..',
     }
     return search
 

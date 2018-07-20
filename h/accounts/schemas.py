@@ -113,20 +113,14 @@ def new_password_node(**kwargs):
 def _privacy_accepted_message():
     terms_links = {
         'privacy_policy': '<a class="link" href="{href}">{text}</a>'.format(
-            href='https://web.hypothes.is/privacy/',
+            href='https://docs.google.com/document/d/1vsfbX_fiidQRw_JCuiDreEU4E4CLOZx-b8NvF779bEk/edit#heading=h.sojqc7vsd7qy',
             text=_('privacy policy'),
         ),
-        'terms_of_service': '<a class="link" href="{href}">{text}</a>'.format(
-            href='https://web.hypothes.is/terms-of-service/',
-            text=_('terms of service'),
-        ),
-        'community_guidelines': '<a class="link" href="{href}">{text}</a>'.format(
-            href='https://web.hypothes.is/community-guidelines/',
-            text=_('community guidelines'),
-        ),
+        'terms_of_service': '',
+        'community_guidelines': '',
     }
 
-    privacy_msg = _('I have read and agree to the {privacy}, {tos}, and {community}.').format(
+    privacy_msg = _('I have read and agree to the {privacy}.').format(
         privacy=terms_links['privacy_policy'],
         tos=terms_links['terms_of_service'],
         community=terms_links['community_guidelines']
@@ -383,16 +377,8 @@ class EditProfileSchema(CSRFSchema):
             validate_url),
         title=_('Link'))
 
-    orcid = colander.SchemaNode(
-        colander.String(),
-        missing=None,
-        validator=validate_orcid,
-        title=_('ORCID'),
-        hint=_('ORCID provides a persistent identifier for researchers (see orcid.org).'))
-
-
 class NotificationsSchema(CSRFSchema):
-    types = (('reply', _('Email me when someone replies to one of my annotations.'),),)
+    types = (('reply', _('Email me when someone replies to one of my messages.'),),)
 
     notifications = colander.SchemaNode(
         colander.Set(),

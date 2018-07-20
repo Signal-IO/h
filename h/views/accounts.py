@@ -465,7 +465,7 @@ class EditProfileController(object):
             'description': user.description or '',
             'location': user.location or '',
             'link': user.uri or '',
-            'orcid': user.orcid or '',
+            #'orcid': user.orcid or '',
         })
         return self._template_data()
 
@@ -486,7 +486,7 @@ class EditProfileController(object):
         user.description = appstruct['description']
         user.location = appstruct['location']
         user.uri = appstruct['link']
-        user.orcid = appstruct['orcid']
+        #user.orcid = appstruct['orcid']
 
 
 @view_defaults(route_name='account_notifications',

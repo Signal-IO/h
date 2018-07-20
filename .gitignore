@@ -37,5 +37,10 @@ celerybeat-schedule.*
 # Temp file for `make test-py3` target
 tests/py3-actual-failures.txt
 
+sendgrid.env
+
+# VSCode
+.vscode
+
 # Virtual Environment
 .venv/

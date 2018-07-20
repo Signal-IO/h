@@ -72,7 +72,7 @@ def includeme(config):
     config.include('pyramid_layout')
 
     config.registry.settings.setdefault('mail.default_sender',
-                                        '"Annotation Daemon" <no-reply@localhost>')
+                                        '"Message Daemon" <alan@travr.se>')
     if asbool(config.registry.settings.get('h.debug')):
         config.include('pyramid_mailer.debug')
     else:

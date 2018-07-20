@@ -1,4 +1,4 @@
-DOCKER_TAG = dev
+DOCKER_TAG = latest
 
 GULP := node_modules/.bin/gulp
 
@@ -32,7 +32,7 @@ dev: build/manifest.json .pydeps
 ## Build hypothesis/hypothesis docker image
 .PHONY: docker
 docker:
-	git archive HEAD | docker build -t hypothesis/hypothesis:$(DOCKER_TAG) -
+	git archive HEAD | docker build -t signalio/travrse-h:$(DOCKER_TAG) -
 
 # Run docker image built with `docker` task
 .PHONY: run-docker
@@ -49,7 +49,7 @@ run-docker:
 		-e "DATABASE_URL=postgresql://postgres@$(PG_CONTAINER)/postgres" \
 		-e "ELASTICSEARCH_HOST=http://$(ES_CONTAINER):9200" \
 		-p 5000:5000 \
-		hypothesis/hypothesis:$(DOCKER_TAG)
+		signalio/travrse-h:$(DOCKER_TAG)
 
 ## Run test suite
 .PHONY: test

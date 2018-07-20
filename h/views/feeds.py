@@ -38,6 +38,6 @@ def stream_rss(request):
         rss_url=request.route_url("stream_rss"),
         html_url=request.route_url("stream"),
         title=request.registry.settings.get("h.feed.title") or _(
-            "Hypothesis Stream"),
+            "Travrse Feed"),
         description=request.registry.settings.get("h.feed.description") or _(
-            "The Web. Annotated"))
+            "Travrse - Discussions in Context"))

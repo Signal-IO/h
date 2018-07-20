@@ -16,6 +16,7 @@
 /forgot_password       internal-prefix forgot_password
 /reset_password        internal-prefix account_reset
 
+
 # Blog redirects
 /blog                                                  prefix https://web.hypothes.is/blog
 
@@ -150,8 +151,6 @@
 /primary-source-annotation/                            exact https://web.hypothes.is/primary-source-annotation/
 /principles                                            exact https://web.hypothes.is/principles/
 /principles/                                           exact https://web.hypothes.is/principles/
-/privacy                                               exact https://web.hypothes.is/privacy/
-/privacy/                                              exact https://web.hypothes.is/privacy/
 /profile-pages                                         exact https://web.hypothes.is/profile-pages/
 /profile-pages/                                        exact https://web.hypothes.is/profile-pages/
 /questions-and-answers-in-annotation                   exact https://web.hypothes.is/questions-and-answers-in-annotation/

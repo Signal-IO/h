@@ -55,7 +55,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'h'
-copyright = u'2012-{}, Hypothes.is Project and contributors'.format(CURRENT_YEAR)
+copyright = u'2012-{}, Travr.se Project and contributors'.format(CURRENT_YEAR)
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the

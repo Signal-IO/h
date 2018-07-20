@@ -18,7 +18,8 @@ from h import __version__
 
 # Default URL for the client, which points to the latest version of the client
 # that was published to npm.
-DEFAULT_CLIENT_URL = 'https://cdn.hypothes.is/hypothesis'
+#DEFAULT_CLIENT_URL = 'https://cdn.hypothes.is/hypothesis'
+DEFAULT_CLIENT_URL = 'https://cdn.travr.se/build/boot.js'
 
 
 def _client_url(request):

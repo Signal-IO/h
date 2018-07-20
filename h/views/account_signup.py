@@ -55,7 +55,8 @@ class SignupController(object):
             return {'form': self.form.render()}
 
         signup_service = self.request.find_service(name='user_signup')
-        signup_service.signup(username=appstruct['username'],
+        signup_service.signup(require_activation=False,
+                              username=appstruct['username'],
                               email=appstruct['email'],
                               password=appstruct['password'],
                               privacy_accepted=datetime.datetime.utcnow())
