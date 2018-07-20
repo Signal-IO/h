@@ -56,15 +56,15 @@ describe('AutosuggestDropdownController', () => {
         },
         {
           title: 'tag:',
-          explanation: 'search for annotations with a tag',
+          explanation: 'search for messages with a tag',
         },
         {
           title: 'url:',
-          explanation: 'see all annotations on a page',
+          explanation: 'see all discussions on a page',
         },
         {
           title: 'group:',
-          explanation: 'show annotations created in a group you are a member of',
+          explanation: 'show discussions created in a group you are a member of',
         },
       ],
 
