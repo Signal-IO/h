@@ -137,6 +137,10 @@ class User(Base):
                      _normalise_username(cls.username),
                      cls.authority,
                      unique=True),
+            # Optimize lookup of shadowbanned users.
+            sa.Index('ix__user__nipsa',
+                     cls.nipsa,
+                     postgresql_where=cls.nipsa.is_(True)),
         )
 
     id = sa.Column(sa.Integer, autoincrement=True, primary_key=True)
@@ -194,6 +198,8 @@ class User(Base):
     #: A NULL value in this column indicates the user has never accepted a privacy policy.
     privacy_accepted = sa.Column(sa.DateTime, nullable=True)
 
+    identities = sa.orm.relationship("UserIdentity", backref="user", cascade="all, delete-orphan")
+
     @hybrid_property
     def username(self):
         return self._username
@@ -215,7 +221,7 @@ class User(Base):
     def userid(cls):  # noqa: N805
         return UserIDComparator(cls.username, cls.authority)
 
-    email = sa.Column(sa.UnicodeText(), nullable=False)
+    email = sa.Column(sa.UnicodeText())
 
     last_login_date = sa.Column(sa.TIMESTAMP(timezone=False),
                                 default=datetime.datetime.utcnow,
@@ -258,6 +264,9 @@ class User(Base):
 
     @sa.orm.validates('email')
     def validate_email(self, key, email):
+        if email is None:
+            return email
+
         if len(email) > EMAIL_MAX_LENGTH:
             raise ValueError('email must be less than {max} characters '
                              'long'.format(max=EMAIL_MAX_LENGTH))
@@ -280,6 +289,9 @@ class User(Base):
     @classmethod
     def get_by_email(cls, session, email, authority):
         """Fetch a user by email address."""
+        if email is None:
+            return None
+
         return session.query(cls).filter(
             sa.func.lower(cls.email) == email.lower(),
             cls.authority == authority,

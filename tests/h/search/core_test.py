@@ -1,7 +1,16 @@
 # -*- coding: utf-8 -*-
+
+"""
+Tests for basic functionality of the `Search` class.
+
+Tests for filtering/matching/aggregating on specific annotation fields are in
+`query_test.py`.
+"""
+
 from __future__ import unicode_literals
 
 import datetime
+import pytest
 
 from h import search
 
@@ -114,6 +123,20 @@ class TestSearch(object):
 
         assert result.reply_ids == []
 
+    def test_it_passes_es_version_to_builder(self, pyramid_request, Builder):
+        client = pyramid_request.es
+        if pyramid_request.feature('search_es6'):
+            client = pyramid_request.es6
+
+        search.Search(pyramid_request)
+
+        assert Builder.call_count == 2
+        Builder.assert_any_call(es_version=client.version)
+
+    @pytest.fixture
+    def Builder(self, patch):
+        return patch('h.search.core.query.Builder', autospec=True)
+
 
 class TestSearchWithSeparateReplies(object):
     """Unit tests for search.Search when separate_replies=True is given."""
@@ -221,3 +244,11 @@ class TestSearchWithSeparateReplies(object):
 
         assert len(result.reply_ids) == 3
         assert oldest_reply.id not in result.reply_ids
+
+
+@pytest.fixture(params=['es1', 'es6'])
+def pyramid_request(request, pyramid_request, es_client, es6_client):
+    pyramid_request.es = es_client
+    pyramid_request.es6 = es6_client
+    pyramid_request.feature.flags["search_es6"] = request.param == 'es6'
+    return pyramid_request
