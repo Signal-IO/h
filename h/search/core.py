@@ -24,7 +24,7 @@ class Search(object):
     :param request: the request object
     :type request: pyramid.request.Request
 
-    :param separate_replies: Wheter or not to return all replies to the
+    :param separate_replies: Whether or not to return all replies to the
         annotations returned by this search. If this is True then the
         resulting annotations will only include top-level annotations, not replies.
     :type separate_replies: bool
@@ -35,13 +35,16 @@ class Search(object):
     """
     def __init__(self, request, separate_replies=False, stats=None, _replies_limit=200):
         self.request = request
-        self.es = request.es
+        if self.request.feature('search_es6'):
+            self.es = request.es6
+        else:
+            self.es = request.es
         self.separate_replies = separate_replies
         self.stats = stats
         self._replies_limit = _replies_limit
 
-        self.builder = self._default_querybuilder(request)
-        self.reply_builder = self._default_querybuilder(request)
+        self.builder = self._default_querybuilder(request, self.es)
+        self.reply_builder = self._default_querybuilder(request, self.es)
 
     def run(self, params):
         """
@@ -57,6 +60,11 @@ class Search(object):
         reply_ids = self._search_replies(annotation_ids)
 
         return SearchResult(total, annotation_ids, reply_ids, aggregations)
+
+    def clear(self):
+        """Clear search filters, aggregators, and matchers."""
+        self.builder = query.Builder(es_version=self.es.version)
+        self.reply_builder = query.Builder(es_version=self.es.version)
 
     def append_filter(self, filter_):
         """Append a search filter to the annotation and reply query."""
@@ -78,7 +86,7 @@ class Search(object):
         response = None
         with self._instrument():
             response = self.es.conn.search(index=self.es.index,
-                                           doc_type=self.es.t.annotation,
+                                           doc_type=self.es.mapping_type,
                                            _source=False,
                                            body=self.builder.build(params))
         total = response['hits']['total']
@@ -96,7 +104,7 @@ class Search(object):
         with self._instrument():
             response = self.es.conn.search(
                 index=self.es.index,
-                doc_type=self.es.t.annotation,
+                doc_type=self.es.mapping_type,
                 _source=False,
                 body=self.reply_builder.build({'limit': self._replies_limit}))
 
@@ -145,8 +153,8 @@ class Search(object):
             s.send()
 
     @staticmethod
-    def _default_querybuilder(request):
-        builder = query.Builder()
+    def _default_querybuilder(request, es):
+        builder = query.Builder(es_version=es.version)
         builder.append_filter(query.DeletedFilter())
         builder.append_filter(query.AuthFilter(request))
         builder.append_filter(query.UriFilter(request))
