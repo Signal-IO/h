@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 from pyramid import security
 from pyramid.httpexceptions import HTTPNoContent
 
-from h.views.api_config import api_config
+from h.views.api.config import api_config
 from h.emails import flag_notification
 from h import links
 from h.interfaces import IGroupService
@@ -35,6 +35,6 @@ def _email_group_admin(request, annotation):
     if incontext_link is None:
         incontext_link = annotation.target_uri
 
-    if group.creator is not None:
+    if group.creator and group.creator.email:
         send_params = flag_notification.generate(request, group.creator.email, incontext_link)
         mailer.send.delay(*send_params)

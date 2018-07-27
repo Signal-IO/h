@@ -28,7 +28,7 @@ from h.interfaces import IGroupService
 from h.presenters import AnnotationJSONLDPresenter
 from h.traversal import AnnotationContext
 from h.schemas.annotation import CreateAnnotationSchema, UpdateAnnotationSchema
-from h.views.api_config import api_config, AngularRouteTemplater
+from h.views.api.config import api_config, AngularRouteTemplater
 
 _ = i18n.TranslationStringFactory(__package__)
 
@@ -47,7 +47,7 @@ def index(context, request):
     # parameter names are added, we'll need to add them here, or this view will
     # break (and get caught by the `test_api_index` functional test).
     templater = AngularRouteTemplater(request.route_url,
-                                      params=['id', 'pubid', 'user'])
+                                      params=['id', 'pubid', 'user', 'userid'])
 
     links = {}
     for link in api_links:

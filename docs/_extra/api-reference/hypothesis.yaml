@@ -253,6 +253,29 @@ paths:
           description: Success
           schema:
             $ref: '#/definitions/GroupResults'
+    post:
+      tags:
+        - groups
+      summary: Create a new group
+      operationId: createGroup
+      description: >
+        Create a new, private group for the currently-authenticated user.
+      parameters:
+        - name: group
+          in: body
+          description: Group to be created
+          required: true
+          schema:
+            $ref: '#/definitions/NewGroup'
+      responses:
+        '200':
+          description: Group successfully created
+          schema:
+            $ref: '#/definitions/GroupResult'
+        '400':
+          description: Could not create group from your request
+          schema:
+            $ref: '#/definitions/Error'
   /search:
     get:
       tags:
@@ -337,7 +360,12 @@ paths:
       summary: Create a new user
       description: |
         Only for specific auth clients, this API call allows clients with a
-        designated authority to create users within their authority.
+        designated authority to create users within their authority. Optional
+        identity information may be provided to maintain provider-specific
+        metadata about users.
+
+        This endpoint will return an HTTP 409 (Conflict) if the request represents
+        a duplicate of an existing user—email, username or identity collision.
       operationId: createUser
       parameters:
         - name: user
@@ -355,6 +383,10 @@ paths:
           description: Could not create user from your request
           schema:
             $ref: '#/definitions/Error'
+        '409':
+          description: Conflict
+          schema:
+            $ref: '#/definitions/ConflictError'
       security:
         - authClientCredentials: []
   /users/{username}:
@@ -396,10 +428,10 @@ paths:
           description: Public ID of the group
           required: true
           type: string
-        - name: user
+        - name: userid
           in: path
           description: |
-            The user to remove from the group. For now, only the value `me` is
+            The userid of the user to remove from the group. For now, only the value `me` is
             supported, representing the currently-authenticated user.
           required: true
           type: string
@@ -409,6 +441,31 @@ paths:
           description: Success
         '404':
           description: Group not found
+          schema:
+            $ref: '#/definitions/Error'
+    post:
+      tags:
+        - groups
+      summary: Add a member to a group
+      operationId: addGroupMember
+      parameters:
+        - name: id
+          in: path
+          description: Public ID of the group
+          required: true
+          type: string
+        - name: userid
+          in: path
+          description: |
+            User ID of the user to add to the group.
+            The userID should be of the format `acct:<username>@<authority>`
+          required: true
+          type: string
+      responses:
+        '204':
+          description: Success
+        '404':
+          description: User or Group not found
           schema:
             $ref: '#/definitions/Error'
 definitions:
@@ -434,6 +491,19 @@ definitions:
       reason:
         type: string
         description: A human-readable description of the reason(s) for failure.
+  ConflictError:
+    description: An error indicating a resource conflict, typically because a duplicate resource already exists.
+    type: object
+    required:
+      - status
+    properties:
+      status:
+        type: string
+        enum:
+          - failure
+      reason:
+        type: string
+        description: One or more human-readable errors describing the conflict.
   SearchResults:
     type: object
     required:
@@ -447,6 +517,10 @@ definitions:
       total:
         description: Total number of results matching query.
         type: integer
+  NewGroup:
+    $ref: './schemas/new-group.yaml#/Group'
+  GroupResult:
+    $ref: './schemas/group.yaml#/Group'
   GroupResults:
     type: array
     items:

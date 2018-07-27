@@ -435,7 +435,7 @@ class AccountController(object):
 
     def _template_data(self):
         """Return the data needed to render accounts.html.jinja2."""
-        email = self.request.user.email
+        email = self.request.user.email or ''
         password_form = self.forms['password'].render()
         email_form = self.forms['email'].render({'email': email})
 
@@ -525,7 +525,15 @@ class NotificationsController(object):
             n.active = n.type in appstruct['notifications']
 
     def _template_data(self):
-        return {'form': self.form.render()}
+        user_has_email_address = self.request.user and self.request.user.email
+        data = {
+            'user_has_email_address': user_has_email_address
+        }
+
+        if user_has_email_address:
+            data['form'] = self.form.render()
+
+        return data
 
     def _user_notifications(self):
         """Fetch the notifications/subscriptions for the logged-in user."""
