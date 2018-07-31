@@ -71,12 +71,6 @@
       {{ svg_icon('link', css_class='search-bucket-stats__icon') }}
       {% trans %}URL{% endtrans %}
     </h4>
-    <div class="search-bucket-stats__val search-bucket-stats__url">
-        <a class="link--plain"
-           rel="nofollow noopener"
-           href="{{ bucket.uri }}"
-           target="_blank">{{ pretty_link(bucket.uri) }}</a>
-    </div>
   {% endif %}
   <div class="u-stretch">
   </div>
@@ -101,7 +95,7 @@
     <div class="search-result-bucket__domain">
       <span class="search-result-bucket__domain-text">{{ bucket.domain }}</span>
       <a class="link--plain search-result-bucket__domain-link"
-         href="{{ bucket.incontext_link(request) }}"
+         href="{{ bucket.uri }}"
          rel="nofollow noopener"
          title="Visit discussions in context"
          target="_blank"
