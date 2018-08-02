@@ -42,6 +42,14 @@ docker-production:
 		git@github.com:Signal-IO/travrse-main.git\#production
 	docker push signalio/travrse-h:latest
 
+## Build a docker image from the production branch on remote git repo
+.PHONY: docker-staging
+docker-staging:
+	docker build \
+		-t signalio/travrse-h:staging \
+		git@github.com:Signal-IO/travrse-main.git\#staging
+	docker push signalio/travrse-h:staging
+
 # Run docker container.
 #
 # This command exists for conveniently testing the Docker image locally in
