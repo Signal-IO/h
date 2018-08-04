@@ -558,6 +558,26 @@ class TestActivateController(object):
 @pytest.mark.usefixtures('routes', 'user_password_service')
 class TestAccountController(object):
 
+    def test_get_returns_email_if_set(self,
+                                      pyramid_request):
+        pyramid_request.user = mock.Mock()
+        pyramid_request.create_form.return_value = mock.Mock()
+        user = pyramid_request.user
+        user.email = 'jims@example.com'
+
+        result = views.AccountController(pyramid_request).get()
+        assert result['email'] == 'jims@example.com'
+
+    def test_get_returns_empty_string_if_email_not_set(self,
+                                                       pyramid_request):
+        pyramid_request.user = mock.Mock()
+        pyramid_request.create_form.return_value = mock.Mock()
+        user = pyramid_request.user
+        user.email = None
+
+        result = views.AccountController(pyramid_request).get()
+        assert result['email'] == ''
+
     def test_post_email_form_with_valid_data_changes_email(self,
                                                            form_validating_to,
                                                            pyramid_request):
@@ -660,18 +680,49 @@ class TestNotificationsController(object):
             'notifications': set(['reply']),
         })
 
+    def test_it_does_not_render_form_if_user_has_no_email_address(self,
+                                                                  factories,
+                                                                  form_validating_to,
+                                                                  pyramid_request):
+        controller = views.NotificationsController(pyramid_request)
+        controller.form = form_validating_to({})
+        pyramid_request.user = factories.User(username='cara')
+        pyramid_request.user.email = None
+
+        result = controller.get()
+
+        assert 'form' not in result
+        assert result['user_has_email_address'] is None
+
+    def test_it_renders_form_if_user_has_email_address(self,
+                                                       factories,
+                                                       form_validating_to,
+                                                       pyramid_request):
+        controller = views.NotificationsController(pyramid_request)
+        controller.form = form_validating_to({})
+        pyramid_request.user = factories.User(username='janedoe')
+
+        result = controller.get()
+
+        assert 'form' in result
+        assert result['user_has_email_address'] == pyramid_request.user.email
+
     def test_post_with_invalid_data_returns_form(self,
+                                                 factories,
                                                  invalid_form,
                                                  pyramid_config,
                                                  pyramid_request):
         pyramid_request.POST = {}
+        pyramid_request.user = factories.User(username='cara')
+        pyramid_request.user.email = None
         pyramid_config.testing_securitypolicy('jerry')
         controller = views.NotificationsController(pyramid_request)
         controller.form = invalid_form()
 
         result = controller.post()
 
-        assert 'form' in result
+        assert 'form' not in result
+        assert result['user_has_email_address'] is None
 
     def test_post_with_valid_data_updates_subscriptions(self,
                                                         form_validating_to,
