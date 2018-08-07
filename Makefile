@@ -29,10 +29,26 @@ dev: build/manifest.json .pydeps
 	@bin/hypothesis --dev init
 	@bin/hypothesis devserver
 
-## Build hypothesis/hypothesis docker image
+## Build signalio/travrse-h docker image
 .PHONY: docker
 docker:
 	git archive HEAD | docker build -t signalio/travrse-h:$(DOCKER_TAG) -
+
+## Build a docker image from the production branch on remote git repo
+.PHONY: docker-production
+docker-production:
+	docker build \
+		-t signalio/travrse-h:latest \
+		git@github.com:Signal-IO/travrse-main.git\#production
+	docker push signalio/travrse-h:latest
+
+## Build a docker image from the production branch on remote git repo
+.PHONY: docker-staging
+docker-staging:
+	docker build \
+		-t signalio/travrse-h:staging \
+		git@github.com:Signal-IO/travrse-main.git\#staging
+	docker push signalio/travrse-h:staging
 
 # Run docker container.
 #
