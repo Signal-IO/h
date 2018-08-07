@@ -20,7 +20,7 @@ services:
       - '127.0.0.1:5672:5672'
       - '127.0.0.1:15672:15672'
   web:
-    image: signalio/travrse-h:latest
+    image: signalio/travrse-h:staging
     ports:
       - '0.0.0.0:80:4999'
       - '0.0.0.0:443:5000'
